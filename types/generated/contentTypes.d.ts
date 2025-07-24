@@ -382,7 +382,7 @@ export interface ApiCapabilitiesSaepCapabilitiesSaep
     singularName: 'capabilities-saep';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     bloom_taxonomy: Schema.Attribute.Enumeration<
@@ -428,7 +428,7 @@ export interface ApiCapabilityCapability extends Struct.CollectionTypeSchema {
     singularName: 'capability';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     bloom_taxonomy: Schema.Attribute.Enumeration<
@@ -475,7 +475,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
     singularName: 'course';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -505,7 +505,7 @@ export interface ApiFunctionsSenaiFunctionsSenai
     singularName: 'functions-senai';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -537,7 +537,7 @@ export interface ApiKnowledgeKnowledge extends Struct.CollectionTypeSchema {
     singularName: 'knowledge';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     capabilities: Schema.Attribute.Relation<
@@ -574,7 +574,7 @@ export interface ApiModulesUcModulesUc extends Struct.CollectionTypeSchema {
     singularName: 'modules-uc';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -604,7 +604,7 @@ export interface ApiPerformanceStandardPerformanceStandard
     singularName: 'performance-standard';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     capabilities: Schema.Attribute.Relation<
@@ -614,7 +614,7 @@ export interface ApiPerformanceStandardPerformanceStandard
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -641,7 +641,7 @@ export interface ApiSubFunctionSenaiSubFunctionSenai
     singularName: 'sub-function-senai';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     capabilities_saeps: Schema.Attribute.Relation<

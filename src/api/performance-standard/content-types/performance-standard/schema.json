@@ -7,12 +7,12 @@
     "displayName": "PerformanceStandard"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "description": {
-      "type": "text",
+      "type": "string",
       "required": true
     },
     "sub_function_senai": {
