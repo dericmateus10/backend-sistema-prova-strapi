@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "capabilities_saeps",
+  "info": {
+    "singularName": "capabilities-saep",
+    "pluralName": "capabilities-saeps",
+    "displayName": "CapabilitiesSaep"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "bloom_taxonomy": {
+      "type": "enumeration",
+      "required": true,
+      "default": "lembrar",
+      "enum": [
+        "lembrar",
+        "compreender",
+        "aplicar",
+        "analisar",
+        "avaliar",
+        "criar"
+      ]
+    },
+    "ucs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::uc.uc",
+      "inversedBy": "capabilities_saeps"
+    },
+    "sub_function_senais": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sub-function-senai.sub-function-senai",
+      "inversedBy": "capabilities_saeps"
+    },
+    "knowledges": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::knowledge.knowledge",
+      "inversedBy": "capabilities_saeps"
+    },
+    "capabilities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::capability.capability",
+      "mappedBy": "capabilities_saep"
+    }
+  }
+}

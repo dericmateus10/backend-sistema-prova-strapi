@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "modules_ucs",
+  "info": {
+    "singularName": "modules-uc",
+    "pluralName": "modules-ucs",
+    "displayName": "ModulesUC"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "ucs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::uc.uc",
+      "mappedBy": "modules_uc"
+    }
+  }
+}

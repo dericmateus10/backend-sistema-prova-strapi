@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "functions_senais",
+  "info": {
+    "singularName": "functions-senai",
+    "pluralName": "functions-senais",
+    "displayName": "FunctionsSenai"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "sub_function_senais": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sub-function-senai.sub-function-senai",
+      "mappedBy": "functions_senai"
+    }
+  }
+}

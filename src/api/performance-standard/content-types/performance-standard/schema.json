@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "performance_standards",
+  "info": {
+    "singularName": "performance-standard",
+    "pluralName": "performance-standards",
+    "displayName": "PerformanceStandard"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "sub_function_senai": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sub-function-senai.sub-function-senai",
+      "inversedBy": "performance_standards"
+    },
+    "capabilities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::capability.capability",
+      "mappedBy": "performance_standards"
+    }
+  }
+}

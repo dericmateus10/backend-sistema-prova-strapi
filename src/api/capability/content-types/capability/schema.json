@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "capabilities",
+  "info": {
+    "singularName": "capability",
+    "pluralName": "capabilities",
+    "displayName": "Capability"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "type_senai": {
+      "type": "enumeration",
+      "default": "tecnica",
+      "enum": [
+        "basica",
+        "tecnica"
+      ]
+    },
+    "bloom_taxonomy": {
+      "type": "enumeration",
+      "default": "lembrar",
+      "enum": [
+        "lembrar",
+        "compreender",
+        "aplicar",
+        "analisar",
+        "avaliar",
+        "criar"
+      ]
+    },
+    "uc": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::uc.uc",
+      "inversedBy": "capabilities"
+    },
+    "performance_standards": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::performance-standard.performance-standard",
+      "inversedBy": "capabilities"
+    },
+    "knowledges": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::knowledge.knowledge",
+      "inversedBy": "capabilities"
+    },
+    "capabilities_saep": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::capabilities-saep.capabilities-saep",
+      "inversedBy": "capabilities"
+    }
+  }
+}

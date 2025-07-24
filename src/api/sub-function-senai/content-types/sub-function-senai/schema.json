@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_function_senais",
+  "info": {
+    "singularName": "sub-function-senai",
+    "pluralName": "sub-function-senais",
+    "displayName": "SubFunctionSenai"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "capabilities_saeps": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::capabilities-saep.capabilities-saep",
+      "mappedBy": "sub_function_senais"
+    },
+    "functions_senai": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::functions-senai.functions-senai",
+      "inversedBy": "sub_function_senais"
+    },
+    "performance_standards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::performance-standard.performance-standard",
+      "mappedBy": "sub_function_senai"
+    }
+  }
+}

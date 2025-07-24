@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ucs",
+  "info": {
+    "singularName": "uc",
+    "pluralName": "ucs",
+    "displayName": "UC"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "ucs"
+    },
+    "modules_uc": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::modules-uc.modules-uc",
+      "inversedBy": "ucs"
+    },
+    "capabilities_saeps": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::capabilities-saep.capabilities-saep",
+      "mappedBy": "ucs"
+    },
+    "capabilities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::capability.capability",
+      "mappedBy": "uc"
+    }
+  }
+}
