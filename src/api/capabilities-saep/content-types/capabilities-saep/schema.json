@@ -51,6 +51,12 @@
       "relation": "oneToMany",
       "target": "api::capability.capability",
       "mappedBy": "capabilities_saep"
+    },
+    "question_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-item.question-item",
+      "mappedBy": "capabilities_saep"
     }
   }
 }

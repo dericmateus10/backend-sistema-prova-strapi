@@ -15,6 +15,10 @@
       "type": "string",
       "required": true
     },
+    "code_ref": {
+      "type": "string",
+      "required": true
+    },
     "sub_function_senai": {
       "type": "relation",
       "relation": "manyToOne",
@@ -26,6 +30,12 @@
       "relation": "manyToMany",
       "target": "api::capability.capability",
       "mappedBy": "performance_standards"
+    },
+    "question_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-item.question-item",
+      "mappedBy": "performance_standard"
     }
   }
 }

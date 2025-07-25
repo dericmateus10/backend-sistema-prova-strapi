@@ -373,6 +373,39 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAlternativeAlternative extends Struct.CollectionTypeSchema {
+  collectionName: 'alternatives';
+  info: {
+    displayName: 'Alternative';
+    pluralName: 'alternatives';
+    singularName: 'alternative';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    isCorrect: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alternative.alternative'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    question_item: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::question-item.question-item'
+    >;
+    textMd: Schema.Attribute.RichText & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCapabilitiesSaepCapabilitiesSaep
   extends Struct.CollectionTypeSchema {
   collectionName: 'capabilities_saeps';
@@ -409,6 +442,10 @@ export interface ApiCapabilitiesSaepCapabilitiesSaep
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    question_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question-item.question-item'
+    >;
     sub_function_senais: Schema.Attribute.Relation<
       'manyToMany',
       'api::sub-function-senai.sub-function-senai'
@@ -442,7 +479,7 @@ export interface ApiCapabilityCapability extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
     knowledges: Schema.Attribute.Relation<
       'manyToMany',
       'api::knowledge.knowledge'
@@ -458,6 +495,10 @@ export interface ApiCapabilityCapability extends Struct.CollectionTypeSchema {
       'api::performance-standard.performance-standard'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    question_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question-item.question-item'
+    >;
     type_senai: Schema.Attribute.Enumeration<['basica', 'tecnica']> &
       Schema.Attribute.DefaultTo<'tecnica'>;
     uc: Schema.Attribute.Relation<'manyToOne', 'api::uc.uc'>;
@@ -508,6 +549,7 @@ export interface ApiFunctionsSenaiFunctionsSenai
     draftAndPublish: false;
   };
   attributes: {
+    code_ref: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -519,6 +561,10 @@ export interface ApiFunctionsSenaiFunctionsSenai
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    question_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question-item.question-item'
+    >;
     sub_function_senais: Schema.Attribute.Relation<
       'oneToMany',
       'api::sub-function-senai.sub-function-senai'
@@ -551,7 +597,7 @@ export interface ApiKnowledgeKnowledge extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
     examples: Schema.Attribute.Blocks;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -560,6 +606,10 @@ export interface ApiKnowledgeKnowledge extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    question_items: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::question-item.question-item'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -611,6 +661,7 @@ export interface ApiPerformanceStandardPerformanceStandard
       'manyToMany',
       'api::capability.capability'
     >;
+    code_ref: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -621,6 +672,71 @@ export interface ApiPerformanceStandardPerformanceStandard
       'api::performance-standard.performance-standard'
     > &
       Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    question_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question-item.question-item'
+    >;
+    sub_function_senai: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::sub-function-senai.sub-function-senai'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQuestionItemQuestionItem
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'question_items';
+  info: {
+    displayName: 'QuestionItem';
+    pluralName: 'question-items';
+    singularName: 'question-item';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    alternatives: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alternative.alternative'
+    >;
+    capabilities_saep: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::capabilities-saep.capabilities-saep'
+    >;
+    capability: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::capability.capability'
+    >;
+    commandMd: Schema.Attribute.RichText & Schema.Attribute.Required;
+    contextMd: Schema.Attribute.RichText & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String & Schema.Attribute.Required;
+    difficulty: Schema.Attribute.Enumeration<['facil', 'media', 'dificil']> &
+      Schema.Attribute.DefaultTo<'facil'>;
+    functions_senai: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::functions-senai.functions-senai'
+    >;
+    knowledges: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::knowledge.knowledge'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question-item.question-item'
+    > &
+      Schema.Attribute.Private;
+    performance_standard: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::performance-standard.performance-standard'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     sub_function_senai: Schema.Attribute.Relation<
       'manyToOne',
@@ -648,6 +764,7 @@ export interface ApiSubFunctionSenaiSubFunctionSenai
       'manyToMany',
       'api::capabilities-saep.capabilities-saep'
     >;
+    code_ref: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -667,6 +784,10 @@ export interface ApiSubFunctionSenaiSubFunctionSenai
       'api::performance-standard.performance-standard'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    question_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question-item.question-item'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1220,6 +1341,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::alternative.alternative': ApiAlternativeAlternative;
       'api::capabilities-saep.capabilities-saep': ApiCapabilitiesSaepCapabilitiesSaep;
       'api::capability.capability': ApiCapabilityCapability;
       'api::course.course': ApiCourseCourse;
@@ -1227,6 +1349,7 @@ declare module '@strapi/strapi' {
       'api::knowledge.knowledge': ApiKnowledgeKnowledge;
       'api::modules-uc.modules-uc': ApiModulesUcModulesUc;
       'api::performance-standard.performance-standard': ApiPerformanceStandardPerformanceStandard;
+      'api::question-item.question-item': ApiQuestionItemQuestionItem;
       'api::sub-function-senai.sub-function-senai': ApiSubFunctionSenaiSubFunctionSenai;
       'api::uc.uc': ApiUcUc;
       'plugin::content-releases.release': PluginContentReleasesRelease;

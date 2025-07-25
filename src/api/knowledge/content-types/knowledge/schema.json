@@ -12,7 +12,7 @@
   "pluginOptions": {},
   "attributes": {
     "description": {
-      "type": "blocks",
+      "type": "string",
       "required": true
     },
     "examples": {
@@ -29,6 +29,12 @@
       "relation": "manyToMany",
       "target": "api::capabilities-saep.capabilities-saep",
       "mappedBy": "knowledges"
+    },
+    "question_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::question-item.question-item",
+      "inversedBy": "knowledges"
     }
   }
 }

@@ -12,7 +12,7 @@
   "pluginOptions": {},
   "attributes": {
     "description": {
-      "type": "text",
+      "type": "string",
       "required": true
     },
     "type_senai": {
@@ -58,6 +58,12 @@
       "relation": "manyToOne",
       "target": "api::capabilities-saep.capabilities-saep",
       "inversedBy": "capabilities"
+    },
+    "question_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-item.question-item",
+      "mappedBy": "capability"
     }
   }
 }

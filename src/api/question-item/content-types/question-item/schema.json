@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "question_items",
+  "info": {
+    "singularName": "question-item",
+    "pluralName": "question-items",
+    "displayName": "QuestionItem"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "contextMd": {
+      "type": "richtext",
+      "required": true
+    },
+    "commandMd": {
+      "type": "richtext",
+      "required": true
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "default": "facil",
+      "enum": [
+        "facil",
+        "media",
+        "dificil"
+      ]
+    },
+    "capabilities_saep": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::capabilities-saep.capabilities-saep",
+      "inversedBy": "question_items"
+    },
+    "capability": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::capability.capability",
+      "inversedBy": "question_items"
+    },
+    "functions_senai": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::functions-senai.functions-senai",
+      "inversedBy": "question_items"
+    },
+    "sub_function_senai": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sub-function-senai.sub-function-senai",
+      "inversedBy": "question_items"
+    },
+    "performance_standard": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::performance-standard.performance-standard",
+      "inversedBy": "question_items"
+    },
+    "knowledges": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::knowledge.knowledge",
+      "mappedBy": "question_items"
+    },
+    "alternatives": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::alternative.alternative",
+      "mappedBy": "question_item"
+    }
+  }
+}

@@ -15,10 +15,20 @@
       "type": "string",
       "required": true
     },
+    "code_ref": {
+      "type": "string",
+      "required": true
+    },
     "sub_function_senais": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::sub-function-senai.sub-function-senai",
+      "mappedBy": "functions_senai"
+    },
+    "question_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-item.question-item",
       "mappedBy": "functions_senai"
     }
   }

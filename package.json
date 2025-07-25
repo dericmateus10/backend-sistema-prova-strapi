@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.19.0",
+    "@strapi/plugin-documentation": "^5.19.0",
     "@strapi/plugin-users-permissions": "5.19.0",
     "@strapi/strapi": "5.19.0",
     "better-sqlite3": "^12.2.0",

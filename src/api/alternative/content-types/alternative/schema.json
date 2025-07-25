@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alternatives",
+  "info": {
+    "singularName": "alternative",
+    "pluralName": "alternatives",
+    "displayName": "Alternative"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "textMd": {
+      "type": "richtext",
+      "required": true
+    },
+    "isCorrect": {
+      "type": "boolean",
+      "default": false
+    },
+    "question_item": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::question-item.question-item",
+      "inversedBy": "alternatives"
+    }
+  }
+}

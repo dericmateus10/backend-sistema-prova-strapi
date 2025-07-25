@@ -15,6 +15,10 @@
       "type": "string",
       "required": true
     },
+    "code_ref": {
+      "type": "string",
+      "required": true
+    },
     "capabilities_saeps": {
       "type": "relation",
       "relation": "manyToMany",
@@ -31,6 +35,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::performance-standard.performance-standard",
+      "mappedBy": "sub_function_senai"
+    },
+    "question_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-item.question-item",
       "mappedBy": "sub_function_senai"
     }
   }
